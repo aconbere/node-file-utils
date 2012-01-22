@@ -3,11 +3,11 @@
 ## Install
 
 <pre>
-  npm install fs-tools
+  npm install file
 </pre>
 
 <pre>
-  var file = require("fs-tools");
+  var file = require("file");
 </pre>
 
 ## API
