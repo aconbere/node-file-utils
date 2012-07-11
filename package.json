@@ -12,4 +12,5 @@
 , "bugs" :
   { "url" : "http://github.com/aconbere/node-file-utils" }
 , "main" : "./lib/file"
+, "license": "MIT"
 }
