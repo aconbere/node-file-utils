@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/aconbere/node-file-utils.png)](http://travis-ci.org/aconbere/node-file-utils)
 # File - Common higher level file and path operations
 
 ## Install
