@@ -13,4 +13,5 @@
   { "url" : "http://github.com/aconbere/node-file-utils" }
 , "main" : "./lib/file"
 , "license": "MIT"
+, "devDependencies": { "mocha": "1.9.x" }
 }
