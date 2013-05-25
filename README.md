@@ -19,7 +19,7 @@ Navigates a file tree, calling callback for each directory, passing in (null, di
 
 ### file.walkSync(start, callback)
 
-Synchronus version of (start, callback), calling callback for each directory, passing in (dirPath, dirs, files).
+Synchronus version of file.walk, calling callback for each directory, passing in (dirPath, dirs, files).
 
 
 ### file.mkdirs(path, mode, callback)
