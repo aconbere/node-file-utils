@@ -111,3 +111,13 @@ describe("file.path#relativePath", function () {
     done();
   });
 });
+
+describe("should handle directory with no access permission", function(){
+    it('should write error when no permission', function(done){
+        file.walk('test_resource/nopermdir', function (err) {
+            assert.notEqual(err, null);
+            assert.equal(err.message, 'path: test_resource/nopermdir is not accessible.');
+            done();
+        });
+    });
+});
