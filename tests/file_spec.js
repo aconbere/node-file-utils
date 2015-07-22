@@ -26,10 +26,21 @@ describe("file#mkdirs", function () {
   it("should make all the directories in the tree", function (done) {
     file.mkdirs("/test/test/test/test", 0755, function(err) {
       if (err) throw new Error(err);
-      assert.equal(madeDirs[0], "/test");
-      assert.equal(madeDirs[1], "/test/test");
-      assert.equal(madeDirs[2], "/test/test/test");
-      assert.equal(madeDirs[3], "/test/test/test/test");
+      assert.equal(madeDirs[0], path.resolve("/test"));
+      assert.equal(madeDirs[1], path.resolve("/test/test"));
+      assert.equal(madeDirs[2], path.resolve("/test/test/test"));
+      assert.equal(madeDirs[3], path.resolve("/test/test/test/test"));
+      done();
+    });
+  });
+
+  it("should make all the directories in the tree on windows", function (done) {
+    file.mkdirs(path.resolve("/test/test/test/test"), 0755, function(err) {
+      if (err) throw new Error(err);
+      assert.equal(madeDirs[0], path.resolve("/test"));
+      assert.equal(madeDirs[1], path.resolve("/test/test"));
+      assert.equal(madeDirs[2], path.resolve("/test/test/test"));
+      assert.equal(madeDirs[3], path.resolve("/test/test/test/test"));
       done();
     });
   });
@@ -45,10 +56,10 @@ describe("file#mkdirsSync", function () {
     file.mkdirsSync("/test/test/test/test", 0755, function(err) {
       if (err) throw new Error(err);
     });
-    assert.equal(madeDirs[0], "/test");
-    assert.equal(madeDirs[1], "/test/test");
-    assert.equal(madeDirs[2], "/test/test/test");
-    assert.equal(madeDirs[3], "/test/test/test/test");
+    assert.equal(madeDirs[0], path.resolve("/test"));
+    assert.equal(madeDirs[1], path.resolve("/test/test"));
+    assert.equal(madeDirs[2], path.resolve("/test/test/test"));
+    assert.equal(madeDirs[3], path.resolve("/test/test/test/test"));
     done();
   });
 });
@@ -82,13 +93,13 @@ describe("file.path#abspath", function () {
   });
 
   it("should convert ~ to the home directory", function (done) {
-    assert.equal(file.path.abspath("~"), file.path.join(process.env.HOME, ""));
-    assert.equal(file.path.abspath("~/test/dir"), file.path.join(process.env.HOME, "test/dir"));
+    assert.equal(file.path.abspath("~"), path.resolve(process.env.HOME));
+    assert.equal(file.path.abspath("~/test/dir"), path.resolve(process.env.HOME, "test/dir"));
     done();
   });
 
   it("should not convert paths begining with /", function (done) {
-    assert.equal(file.path.abspath("/x/y/z"), "/x/y/z");
+    assert.equal(file.path.abspath("/x/y/z"), path.resolve("/x/y/z"));
     done();
   });
 });
